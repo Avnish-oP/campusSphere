@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({isOpen}) => {
   const [activeTab, setActiveTab] = useState('Academic');
 
   const handleTabClick = (tabName) => {
@@ -8,7 +8,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-gray-100 h-screen w-[30vh]">
+    <div className={`bg-gray-100 h-screen w-[30vh] transition-all duration-[2000ms] ease-out ${isOpen? `translate-x-0 opacity-100`: 
+    `translate-x-full opacity-0`}`}>
       <div className="flex flex-col justify-between h-full">
         <div className="p-4">
           <h2 className="text-lg font-bold mb-2">Tabs</h2>
