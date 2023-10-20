@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Academic = () => {
   const [selectedYear, setSelectedYear] = useState('');
@@ -54,8 +55,9 @@ const Academic = () => {
     { branch: 'CE', year: '4', subject: 'Earthquake Engineering' },
     { branch: 'CE', year: '4', subject: 'Advanced Concrete Technology' },
   ];
+  const sortedSubjects = subjects.sort((a, b) => a.year.localeCompare(b.year));
 
-  const filteredSubjects = subjects.filter(
+  const filteredSubjects = sortedSubjects.filter(
     (subject) =>
       (selectedYear === '' || subject.year === selectedYear) &&
       (selectedBranch === '' || subject.branch === selectedBranch) &&
@@ -83,13 +85,13 @@ const Academic = () => {
   return (
     <div>
       <div className="flex justify-between items-center mt-2">
-        <div className="mr-4">
+        <div className='flex items-center mr-4'>
           <label htmlFor="year-select">Year:</label>
           <select
             id="year-select"
             value={selectedYear}
             onChange={handleYearChange}
-            className="block w-full mt-1"
+            className="block w-full mt-1 boder-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm p-1"
           >
             <option value="">Select Year</option>
             <option value="1">First Year</option>
@@ -98,13 +100,13 @@ const Academic = () => {
             <option value="4">Fourth Year</option>
           </select>
         </div>
-        <div className="mr-4">
+        <div className='flex items-center mr-4'>
           <label htmlFor="branch-select">Branch:</label>
           <select
             id="branch-select"
             value={selectedBranch}
             onChange={handleBranchChange}
-            className="block w-full mt-1"
+            className="block w-full mt-1 boder-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm p-1"
           >
             <option value="">Select Branch</option>
             <option value="CSE">Computer Science and Engineering</option>
@@ -113,13 +115,13 @@ const Academic = () => {
             <option value="CE">Civil Engineering</option>
           </select>
         </div>
-        <div>
+        <div className='flex items-center'>
           <label htmlFor="subject-select">Subject:</label>
           <select
             id="subject-select"
             value={selectedSubject}
             onChange={handleSubjectChange}
-            className="block w-full mt-1"
+            className="block w-full mt-1 boder-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm p-1"
           >
             <option value="">Select Subject</option>
             <option value="Mathematics">Mathematics</option>
@@ -148,6 +150,7 @@ const Academic = () => {
             <p className="text-gray-500">{subject.branch}</p>
             <p className="text-gray-500">{subject.year+"nd year"}</p>
           </div>
+          
         ))}
       </div>
     </div>

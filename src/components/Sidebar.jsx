@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-const Sidebar = ({isOpen}) => {
+const Sidebar = ({isOpen,tab}) => {
   const [activeTab, setActiveTab] = useState('Academic');
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
+    tab(tabName);
   };
 
   return (
@@ -12,7 +13,7 @@ const Sidebar = ({isOpen}) => {
     `translate-x-full opacity-0`}`}>
       <div className="flex flex-col justify-between h-full">
         <div className="p-4">
-          <h2 className="text-lg font-bold mb-2">Tabs</h2>
+          <h2 className="text-lg font-bold mb-2">Select Your Zone</h2>
           <div className="flex flex-col space-y-2">
             <button
               className={`px-4 py-2 rounded-lg ${activeTab === 'Academic' ? 'bg-blue-500 text-white' : 'bg-white text-gray-700'}`}

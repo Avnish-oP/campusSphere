@@ -1,16 +1,20 @@
 import { useState } from 'react'
+import Index from './index'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+// import LoginForm from './components/LoginForm'
 import Homepage from './homepage'
-import './App.css'
 import Sidebar from './components/Sidebar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      <Homepage />
-
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/home" element={<Homepage />} />
+      </Routes>    
+    </Router>
   )
 }
 
