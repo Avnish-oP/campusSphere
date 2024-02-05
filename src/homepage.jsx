@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import './App.css'  
 import Academic from './components/academic';
 import Chillzone from './chillzone';
+import CommunityZone from './components/communityZone';
 
 export default function Homepage() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,6 +26,7 @@ export default function Homepage() {
   {openTab === 'Academic' && <Academic/>}
       
       {openTab === 'Chill Zone'  && <Chillzone/>}
+      {openTab==="Community" &&<CommunityZone/>}
       </div>
     </div>
   )

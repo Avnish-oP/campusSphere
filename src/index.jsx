@@ -1,83 +1,86 @@
-import Carousel from "./components/carousel";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Footer from "./components/footer";
 
-const Index = () => {
+function Index() {
+  const [tagline, setTagline] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    const taglineText = "Onne Stop Solution for College Students";
+    let i = 0;
+
+    const interval = setInterval(() => {
+      if (i < taglineText.length) {
+        if (taglineText === "One Stop Solution for College Students") {
+          setTagline("");
+        } else {
+          setTagline((prevTagline) => prevTagline + taglineText.charAt(i));
+          i++;
+        }
+      } else {
+        setIsTyping(false);
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
-    <>
-      <div className=" bg-gradient-to-r from-cyan-200 to-blue-500 w-full h-screen">
-        <header>
-          <nav className="bg-[#002D62] p-5 ">
-            <div className="container mx-auto flex  items-center h-9">
-              <div className="w-1/4 bg-[#002D62] p-4 m-2 text-black">
-                <p></p>
-              </div>
-              <div className="w-1/2 bg-[#002D62] p-4 m-2 text-black">
-                <p className="text-xl text-blue-50 font-semibold">
-                  CampusSphere-
-                  <span className="text-blue-50">
-                    {" "}
-                    Where Campus Life Comes Alive
-                  </span>
-                </p>
-              </div>
-              <div className="w-1/6 bg-[#002D62] p-4 m-2 text-black justify-self-end">
-                <p className="text-xl font-semibold"></p>
-              </div>
-              <div className="w-1/4 bg-[#002D62] p-4 m-2 text-black justify-between flex">
-                <p className="text-xl font-semibold flex">
-                  <button className="bg-white p-2 rounded-md ">
-                    Log In/Sign Up
-                  </button>
-                </p>
-              </div>
-            </div>
-          </nav>
-        </header>
-        <div className="main">
-          <div className="w-1/3">
-            <h1 className="font-light text-3xl pt-8 pl-8 text-blue-50">
-              Welcome to the World{" "}
-              <span className="text-base text font-black">
-                where academics, fun, connections, and clubs all come together
-                in one place.
+    <div className="bg-gradient-to-r from-cyan-200 to-blue-500 h-screen">
+      <nav className="bg-transparent p-5 flex items-center justify-between">
+        <div className="flex items-center">
+          <img
+            src="https://cdn.discordapp.com/attachments/1064123884569362488/1165537330468241448/logo3-removebg-preview.png?ex=6547363a&is=6534c13a&hm=21ff55dc85d7008bf39aabf05760e5f0dc0cbd1bdecbba3d9fcf2c8fb2c5254f&"
+            alt="CampusSphere Logo"
+            className="h-8 mr-2"
+          />
+          <h1 className="text-blue-950 drop-shadow-md  text-xl font-bold">CampusSphere</h1>
+        </div>
+        <div>
+          <Link to="/login" className="text-white font-semibold mr-4">
+            Login
+          </Link>
+          <Link to="/signup" className="text-white font-semibold">
+            Sign Up
+          </Link>
+        </div>
+      </nav>
+      <div className="bg-cover  bg-center h-screen flex items-center  mx-auto justify-around bg-image">
+        <div className="container text-center mx-auto basis-[55vh]">
+          <h2 className="text-white text-4xl font-bold mb-4">
+            {isTyping ? (
+              <span className="drop-shadow-md">
+                {tagline}
+                <span className="animate-blink cursor-1">|</span>
               </span>
-            </h1>
-          </div>
-          <div className="flex w-fit  ">
-            <div className="w-1/2 ">
-              <h1 className="text-6xl m-12 text-blue-50 font-normal">
-                CampusSphere-<span className="text-3xl">
-                  Where Campus Life Comes Alive</span>
-              </h1>
-            </div>
-          </div>
-          <div className="flex">
-          <div className="w-fit  p-4 m-2 text-black justify-between flex hover:scale-200">
-                <p className="text-xl font-semibold flex">
-                  <Link to={"/home"}><button className="bg-blue-950 text-blue-50 p-2 rounded-md ml-10 hover:bg-blue-50 hover:text-black hover:scale-200 ">
-                   Get Started
-                  </button></Link>
-                </p>
-              </div>
-              <div className="w-fit  p-4 m-2 text-black justify-between flex hover:scale-200">
-                <p className="text-xl font-semibold flex">
-                  <button className="bg-blue-950 text-blue-50 p-2 rounded-md ml-10 hover:bg-blue-50 hover:text-black hover:scale-200 ">
-                   Contact Us
-                  </button>
-                </p>
-              </div>
-              </div>
-              
+            ) : (
+              <span className="drop-shadow-md">{tagline}</span>
+            )}
+          </h2>
+          <p className="text-blue-950 text-lg italic font-medium">
+            Access all your college resources,
+          </p>
+          <p className="text-blue-950 font-medium text-lg mb-8 italic">
+            chat with other students, and connect with the community.
+          </p>
+          <Link
+            to="/home"
+            className="bg-white text-blue-500 font-semibold px-4 py-2 rounded-lg shadow-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out"
+          >
+            Get Started
+          </Link>
+        </div>
+        <div className="basis-[45vw] ">
+          <img
+            src="https://cdn.discordapp.com/attachments/1064123884569362488/1165537990995607622/logo3-removebg-preview.png?ex=654736d7&is=6534c1d7&hm=6fedf1f5938d1383d807f9da9c25a69072f584f7a70dcd05722dd27fcb08efaa&"
+            alt="CampusSphere Logo"
+            className="drop-shadow-2xl shadow-black w-[40vw]"
+          />
         </div>
       </div>
-
-      <div class="bg-gradient-to-r from-cyan-200 to-blue-500 h-20 mt-11 self-center p-4 ">
-        <center>
-          <h1 class=" text-4xl">Our Special Features and Insights!</h1>
-        </center>
-      </div>
-      <div className=" bg-[#002D62] h-fit">
-        <div className="container mx-auto mt-10 ">
+      <div className="container mx-auto">
+        <div className="container mx-auto pb-4 ">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white p-4 shadow-lg rounded-lg h-96 hover:scale-110  hover:bg-sky-200 ...">
               <img
@@ -88,7 +91,6 @@ const Index = () => {
               <p className="text-xl font-semibold">Academics</p>
               <p className="text-gray-600"></p>
             </div>
-
             <div className="bg-white p-4 shadow-lg rounded-lg h-96 hover:scale-110  hover:bg-sky-200 ...">
               <img
                 src="https://media.discordapp.net/attachments/1164497786964803585/1164841383723536474/college-university-students-group-young-happy-people-standing-isolated-white-background_575670-66.png?ex=6544ae13&is=65323913&hm=a1066cf3b5f50fb991443e49b7e028dcbab8a9ede1405c4345488ce4f387b7bf&=&width=706&height=589 "
@@ -98,7 +100,6 @@ const Index = () => {
               <p className="text-xl font-semibold">Chill Zone</p>
               <p className="text-gray-600"></p>
             </div>
-
             <div className="hover:scale-110 bg-white p-4 shadow-lg rounded-lg h-96  hover:bg-sky-200 ...">
               <img
                 src="https://media.discordapp.net/attachments/1164497786964803585/1164838610558787627/man-looking-data-of-new-candidate.png?ex=6544ab7e&is=6532367e&hm=a33f23fb5d98cbdcd38a65e5e65b56751ad3ab15eb257641016a4d671da01c00&=&width=708&height=589"
@@ -108,7 +109,6 @@ const Index = () => {
               <p className="text-xl font-semibold">Alumini</p>
               <p className="text-gray-600"></p>
             </div>
-
             <div class="bg-white p-4 hover:scale-110  shadow-lg rounded-lg h-96 hover:bg-sky-200 ...">
               <img
                 src="https://media.discordapp.net/attachments/1164497786964803585/1164842388280315974/College-Societies.png?ex=6544af03&is=65323a03&hm=8a5ca454314f9c216cdaaa9b558f85a34e27948bb77f299c4586cabf1d096eb0&=&width=1057&height=589"
@@ -121,8 +121,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-
-      <div className="container mx-auto mt-8 h-80 bg-gradient-to-r from-cyan-200 to-blue-500  ">
+      <div className=" mx-auto mt-8 h-80 bg-gradient-to-r from-cyan-200 to-blue-500  ">
         <div className="w-full p-4 flex h-96 bg-gradient-to-r from-cyan-200 to-blue-500place-self-center  ">
           <img
             class="w-1/2 self-center h-80 mt-8 rounded-lg hover:scale-200"
@@ -130,7 +129,7 @@ const Index = () => {
             alt="Image"
           ></img>
 
-          <div className="w-1/2 p-4 place-self-center">
+          <div className="w-1/2 m-4 place-self-center">
             <h1 className="text-4xl my-8">Academic Zone</h1>
             <p className="text-lg self-center ">
               Our Academic Zone is a hub of knowledge, where the community can
@@ -190,66 +189,10 @@ const Index = () => {
             ></img>
           </div>
         </div>
-        <Carousel />
-        
-        <div class="bg-gradient-to-r from-cyan-200 to-blue-500  mx-auto bg-white p-8 rounded shadow-md ">
-          <h1 class="text-2xl font-semibold mb-4">Contact Us</h1>
-          <form>
-            <div class="mb-4">
-              <label
-                for="name"
-                class="block text-black text-l font-bold mb-2 border-gray-950"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="border-4 border-black w-full px-3 py-2  rounded-lg"
-                placeholder="Your Name"
-                required
-              ></input>
-            </div>
-            <div class="mb-4">
-              <label for="email" class="block text-black text-l font-bold mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="border-4 border-black w-full px-3 py-2 rounded-lg"
-                placeholder="you@example.com"
-                required
-              ></input>
-            </div>
-            <div class="mb-4 ">
-              <label
-                for="message"
-                class="block text-black text-l  font-bold mb-2 "
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                class="border-4 border-black w-full px-3 py-2  rounded-lg"
-                rows="5"
-                placeholder="Your Message"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              class="bg-[#002D62] hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    </>
+    </div>
+              <Footer/>
+    </div>
   );
-};
+}
+
 export default Index;

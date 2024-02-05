@@ -2,13 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities{
-    .main{
-        
-        background-image: url("https://media.discordapp.net/attachments/1164497786964803585/1164821262082768927/Design_3_1.png?ex=65449b56&is=65322656&hm=a988d1577ccc03281d66b012ab269865e12fef378c7f712b105f95efdacdc232&=&width=1125&height=589");
-        background-repeat:no-repeat;
-        background-size:cover;
-        overflow: hidden;
-        height: 100vh;
-        
-    }
+    .animate-blink {
+        animation-name: blink;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .cursor-1 {
+        cursor: vertical-text;
+      }
+      .bg-image{
+        background-image: url('https://images.unsplash.com/photo-1622837137196-4b7b2b0b0b0a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZCUyMGJhY2tncm91bmQlMjB3b3JsZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80');
+      }
 }
